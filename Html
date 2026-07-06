@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SparkJoy Party Hosts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary: #ff6fb5;
+      --secondary: #4b9fff;
+      --dark: #222;
+      --light: #fff;
+      --bg: #fdf4ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #ffe3f3, #fdf4ff);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--light);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 0.05em;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 1rem;
+      padding: 1.8rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      font-size: 1.8rem;
+      color: var(--secondary);
+    }
+
+    .hero-text p {
+      margin-top: 0.5rem;
+    }
+
+    .hero-highlight {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      background: rgba(75, 159, 255, 0.1);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      border: 1px solid rgba(75, 159, 255, 0.3);
+    }
+
+    .hero-card {
+      background: var(--light);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      border: 2px dashed rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card .price-big {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .hero-card small {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--secondary);
+      color: var(--light);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #2f7edb;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .pricing-card {
+      background: #fff;
+      border-radius: 0.9rem;
+      padding: 1rem;
+      border: 1px solid #f0d7ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pricing-card .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .pricing-card .duration {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .pricing-card li {
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .tag {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      background: var(--secondary);
+      color: var(--light);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .age-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .age-card {
+      background: #fff;
+      border-radius: 0.9rem;
+      padding: 1rem;
+      border: 1px solid #ffe3f3;
+    }
+
+    .age-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--secondary);
+    }
+
+    .age-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .age-card ul {
+      list-style: none;
+      font-size: 0.85rem;
+    }
+
+    .age-card li::before {
+      content: "★ ";
+      color: var(--primary);
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+    }
+
+    form {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    form label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      display: block;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ddd;
+      font-size: 0.9rem;
+    }
+
+    form textarea {
+      grid-column: 1 / -1;
+      min-height: 80px;
+    }
+
+    form button {
+      grid-column: 1 / -1;
+      justify-self: flex-start;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SparkJoy Party Hosts</h1>
+    <p>Character party entertainers for kids & teens — Melbourne and surrounds.</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#characters">Characters</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Book Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about" class="hero">
+      <div class="hero-text">
+        <h2>We bring the character. You bring the cake.</h2>
+        <p>
+          From gentle fairy magic for toddlers to high-energy superhero games for older kids,
+          SparkJoy Party Hosts keeps every age group smiling, moving and feeling special.
+        </p>
+        <div class="hero-highlight">
+          <span class="pill">From $130 per hour</span>
+          <span class="pill">Up to 25 kids per host</span>
+          <span class="pill">Custom themes & music</span>
+          <span class="pill">WWCC & insured entertainers</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Most booked package</h3>
+        <div class="price-big">$320</div>
+        <small>2.5 hours • up to 25 kids</small>
+        <p style="margin-top:0.5rem;font-size:0.9rem;">
+          Perfect for weekend parties: games, dancing, character story time, plus a break for cake.
+        </p>
+        <a href="#contact" class="btn-primary">Check availability</a>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2>Packages & pricing</h2>
+      <p>
+        Simple, transparent pricing. No weekend surcharge. Travel fees may apply outside metro areas.
+      </p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <span class="tag">Starter</span>
+          <h3>1 Hour Party Burst</h3>
+          <div class="price">$130</div>
+          <div class="duration">Best for small groups & younger kids</div>
+          <ul>
+            <li>1 character host</li>
+            <li>Themed games & music</li>
+            <li>Bubbles & mini dance party</li>
+            <li>Up to ~15 kids</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card">
+          <span class="tag">Popular</span>
+          <h3>1.5 Hour Fun Session</h3>
+          <div class="price">$200</div>
+          <div class="duration">Great balance of games & photos</div>
+          <ul>
+            <li>1 character host</li>
+            <li>Games, dancing & story time</li>
+            <li>Quick break for cake</li>
+            <li>Up to ~20 kids</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card">
+          <span class="tag">Party Classic</span>
+          <h3>2 Hour Celebration</h3>
+          <div class="price">$260</div>
+          <div class="duration">Perfect for most birthday parties</div>
+          <ul>
+            <li>1 character host</li>
+            <li>Games, dancing & challenges</li>
+            <li>Photo moments & cake break</li>
+            <li>Up to ~25 kids</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card">
+          <span class="tag">Best value</span>
+          <h3>2.5 Hour Party Experience</h3>
+          <div class="price">$320</div>
+          <div class="duration">Extended fun for bigger groups</div>
+          <ul>
+            <li>1 character host (add a second on request)</li>
+            <li>Full game show + dance party</li>
+            <li>Custom playlist & theme</li>
+            <li>Up to ~25 kids</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="characters">
+      <h2>Characters by age group</h2>
+      <p>
+        Choose a character that matches your child’s age and energy level. We tailor games and
+        activities to suit the group.
+      </p>
+      <div class="age-grid">
+        <div class="age-card">
+          <h3>Ages 1–4 • Gentle & magical</h3>
+          <p>Soft, calm and playful — perfect for little ones with shorter attention spans.</p>
+          <ul>
+            <li>Baby Bunny</li>
+            <li>Soft Fairy</li>
+            <li>Cuddly Clown</li>
+          </ul>
+        </div>
+
+        <div class="age-card">
+          <h3>Ages 5–8 • High-energy heroes</h3>
+          <p>Lots of movement, games and imagination for primary-age kids.</p>
+          <ul>
+            <li>Superhero Star</li>
+            <li>Disco Unicorn</li>
+            <li>Adventure Pirate</li>
+          </ul>
+        </div>
+
+        <div class="age-card">
+          <h3>Ages 9–12 • Cool & creative</h3>
+          <p>Interactive challenges, team games and creative moments.</p>
+          <ul>
+            <li>Mystery Magician</li>
+            <li>Dance DJ</li>
+            <li>Creative Cosplayer</li>
+          </ul>
+        </div>
+
+        <div class="age-card">
+          <h3>Teens • Event host</h3>
+          <p>More like an MC than a “kids character” — perfect for teen parties.</p>
+          <ul>
+            <li>Game Show Host</li>
+            <li>DJ-style Party Host</li>
+            <li>Chill MC</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>How many kids can one host manage?</h3>
+        <p>
+          We recommend up to 20–25 kids per host, depending on age. For larger groups, you can
+          request a second host.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Do you bring everything?</h3>
+        <p>
+          Yes — we bring music, games, props and character costume. You just provide the space,
+          food and decorations.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>What areas do you cover?</h3>
+        <p>
+          We service metro areas and selected surrounding suburbs. Travel fees may apply for
+          longer distances.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Check availability & book</h2>
+      <p>
+        Fill in your details and preferred package. We’ll confirm availability and send you a
+        booking email.
+      </p>
+      <form>
+        <div>
+          <label for="name">Your name</label>
+          <input id="name" type="text" placeholder="Full name">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com">
+        </div>
+        <div>
+          <label for="date">Party date</label>
+          <input id="date" type="date">
+        </div>
+        <div>
+          <label for="location">Suburb / location</label>
+          <input id="location" type="text" placeholder="Suburb / venue">
+        </div>
+        <div>
+          <label for="package">Package</label>
+          <select id="package">
+            <option value="">Select a package</option>
+            <option>1 Hour Party Burst — $130</option>
+            <option>1.5 Hour Fun Session — $200</option>
+            <option>2 Hour Celebration — $260</option>
+            <option>2.5 Hour Party Experience — $320</option>
+          </select>
+        </div>
+        <div>
+          <label for="age">Age group</label>
+          <select id="age">
+            <option value="">Select age group</option>
+            <option>Ages 1–4</option>
+            <option>Ages 5–8</option>
+            <option>Ages 9–12</option>
+            <option>Teens</option>
+          </select>
+        </div>
+        <textarea placeholder="Tell us about your theme, character choice and any special requests."></textarea>
+        <button type="submit" class="btn-primary">Send enquiry</button>
+      </form>
+      <p style="margin-top:0.8rem;font-size:0.8rem;color:#666;">
+        This form is a demo only. Connect it to your email or booking system to receive enquiries.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> SparkJoy Party Hosts • Party entertainment & character hosts
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
